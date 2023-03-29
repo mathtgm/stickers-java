@@ -10,8 +10,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // URL do JSON
-        String url = "https://raw.githubusercontent.com/lukadev08/lukadev08.github.io/main/apidata/imdbtop250moviesdata.json";
-        //String url = " "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularMovies.json";
+        //String url = "https://raw.githubusercontent.com/lukadev08/lukadev08.github.io/main/apidata/imdbtop250moviesdata.json";
+        // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularTVs.json";
+        // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/Top250TVs.json";
+        String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularFilms.json";
         URI uri = URI.create(url);
         // Cria um cliente
         var httpClient = HttpClient.newHttpClient();
