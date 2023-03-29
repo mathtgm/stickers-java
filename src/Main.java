@@ -11,8 +11,8 @@ public class Main {
 
         // URL do JSON
         // String url = "https://raw.githubusercontent.com/lukadev08/lukadev08.github.io/main/apidata/imdbtop250moviesdata.json";
-        String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularTVs.json";
-        // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/Top250TVs.json";
+        //String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularTVs.json";
+        String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/Top250TVs.json";
         // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularFilms.json";
         URI uri = URI.create(url);
         // Cria um cliente
@@ -29,7 +29,7 @@ public class Main {
         List<Map<String, String>> listaFilmes = new JsonParser().parse(httpResponse.body());
 
         System.out.println("======================================================");
-        System.out.println("============ SERIES POPULARES DE 2023 📺==============");
+        System.out.println("================= TOP 250 SERIES 📺 ==================");
         System.out.println("======================================================");
 
         for (Map<String, String> filme: listaFilmes) {
