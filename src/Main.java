@@ -10,10 +10,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // URL do JSON
-        //String url = "https://raw.githubusercontent.com/lukadev08/lukadev08.github.io/main/apidata/imdbtop250moviesdata.json";
-        // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularTVs.json";
+        // String url = "https://raw.githubusercontent.com/lukadev08/lukadev08.github.io/main/apidata/imdbtop250moviesdata.json";
+        String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularTVs.json";
         // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/Top250TVs.json";
-        String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularFilms.json";
+        // String url = "https://raw.githubusercontent.com/mathtgm/stickers-java/main/MostPopularFilms.json";
         URI uri = URI.create(url);
         // Cria um cliente
         var httpClient = HttpClient.newHttpClient();
@@ -28,8 +28,21 @@ public class Main {
         // Converte a resposta em JSON para um Mapa/Dicionario
         List<Map<String, String>> listaFilmes = new JsonParser().parse(httpResponse.body());
 
+        System.out.println("======================================================");
+        System.out.println("============ SERIES POPULARES DE 2023 📺==============");
+        System.out.println("======================================================");
+
         for (Map<String, String> filme: listaFilmes) {
-            System.out.println(filme.get("rank") + "" + filme.get("title"));
+            System.out.println("Posicao: " + filme.get("rank"));
+            System.out.println("Titulo : " + filme.get("fullTitle"));
+            System.out.print("Estrelas: ");
+            if(!filme.get("imDbRating").isEmpty())
+                for(int i = 0; i < Math.round(Double.parseDouble(filme.get("imDbRating")));i++) {
+                    System.out.print("⭐");
+                }
+            System.out.print(" " + filme.get("imDbRating") + "\n");
+
+            System.out.println("======================================================");
         }
     }
 }
