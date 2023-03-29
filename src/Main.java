@@ -1,4 +1,5 @@
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -26,7 +27,7 @@ public class Main {
         String body = httpResponse.body();
 
         // Converte a resposta em JSON para um Mapa/Dicionario
-        List<Map<String, String>> listaFilmes = new JsonParser().parse(httpResponse.body());
+        List<Map<String, String>> listaFilmes = new JsonParser().parse(body);
 
         System.out.println("======================================================");
         System.out.println("================= TOP 250 SERIES 📺 ==================");
@@ -43,6 +44,9 @@ public class Main {
             System.out.print(" " + filme.get("imDbRating") + "\n");
 
             System.out.println("======================================================");
+
+        new GeradorStickers().gerar(new URL(filme.get("image")).openStream(), filme.get("title"));
+
         }
     }
 }
