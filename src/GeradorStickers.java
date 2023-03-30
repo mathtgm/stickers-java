@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class GeradorStickers  {
 
-    public void gerar(InputStream imagem, String nomeArquivo) throws Exception {
+    public void gerar(InputStream imagem, String nomeArquivo, Double pontuacao) throws Exception {
 
         // Leitura da imagem
         BufferedImage image = ImageIO.read(imagem);
@@ -30,12 +30,23 @@ public class GeradorStickers  {
         graphics2D.setFont(fonte);
         graphics2D.setColor(Color.YELLOW);
 
-        //Configurando a frase
-        String frase = "Muito Bom!";
+        //Configurando a frase e selo
+        String frase;
+        if(pontuacao < 5) {
+            frase = "Ruim!";
+        } else if(pontuacao <= 7) {
+            frase = "Bom!";
+        } else {
+            frase = "TOPZERA!!";
+            // Adiciona o selo
+            FileInputStream seloStream = new FileInputStream(new File("image/selo.png"));
+            BufferedImage selo = ImageIO.read(seloStream);
+            graphics2D.drawImage(selo, 100, 100, (int) (altura * 0.20),(int) (altura * 0.20), null);
+        }
         FontMetrics fontMetrics = graphics2D.getFontMetrics();
         // Lagura do texto - Largura da imagem, depois divide por 2 e é igual a margem
         int novoX = (int) (largura - fontMetrics.getStringBounds(frase, graphics2D).getWidth())/2;
-        int novoY = altura + 25;
+        int novoY = novaAltura;
         graphics2D.drawString(frase, novoX, novoY);
 
         // Configurando o outline da frase
