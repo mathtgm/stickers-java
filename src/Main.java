@@ -1,7 +1,6 @@
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -20,11 +19,11 @@ public class Main {
 
         for (int i = 0; i < 3; i++) {
             Conteudo conteudo = listaConteudo.get(i);
-            System.out.println(conteudo.getTitulo());
+            System.out.println(conteudo.titulo());
 
             System.out.println("======================================================");
-            InputStream imagemConteudo = new URL(conteudo.getUrlImagem()).openStream();
-            new GeradorStickers().gerar(imagemConteudo, conteudo.getTitulo());
+            InputStream imagemConteudo = new URL(conteudo.urlImagem()).openStream();
+            new GeradorStickers().gerar(imagemConteudo, conteudo.titulo());
 
         }
     }
