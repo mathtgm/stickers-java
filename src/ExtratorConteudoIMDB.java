@@ -10,7 +10,11 @@ public class ExtratorConteudoIMDB implements ExtratorCounteudo {
         JsonParser jsonParser = new JsonParser();
         List<Map<String, String>> listaDados = jsonParser.parse(json);
 
-        List<Conteudo> listaConteudo = new ArrayList<>();
+        return listaDados.stream()
+                .map(atributo -> new Conteudo(atributo.get("title"), atributo.get("image")))
+                .toList();
+
+        /* List<Conteudo> listaConteudo = new ArrayList<>();
 
         // Alimenta a lista de conteudo
         for (Map<String, String> dado: listaDados) {
@@ -20,7 +24,7 @@ public class ExtratorConteudoIMDB implements ExtratorCounteudo {
         }
 
         return listaConteudo;
-
+    */
     }
 
 }

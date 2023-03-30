@@ -10,6 +10,10 @@ public class ExtratorConteudoNASA implements ExtratorCounteudo {
         JsonParser jsonParser = new JsonParser();
         List<Map<String, String>> listaDados = jsonParser.parse(json);
 
+        return listaDados.stream()
+                .map(atributo -> new Conteudo(atributo.get("title"), atributo.get("url")))
+                .toList();
+        /*
         List<Conteudo> listaConteudo = new ArrayList<>();
 
         // Alimenta a lista de conteudo
@@ -20,7 +24,7 @@ public class ExtratorConteudoNASA implements ExtratorCounteudo {
         }
 
         return listaConteudo;
-
+        */
     }
 
 }
